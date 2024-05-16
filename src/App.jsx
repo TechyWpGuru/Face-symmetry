@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Navbar from "./components/navBar";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import ShowImage from "./pages/ShowImage.jsx";
 
