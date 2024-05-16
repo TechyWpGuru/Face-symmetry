@@ -1,0 +1,20 @@
+.nav-item-style {
+    font-weight:bolder;
+    /* Set font weight to bold */
+    font-size: 18px;
+    /* Adjust font size */
+}
+
+.nav-item-style:hover,
+.nav-item-style:focus {
+    color: hsl(0, 16%, 80%);
+    border: 3px solid #8A2BE2;
+    border-radius: 8px;
+    /* Change background color on hover */
+}
+
+.nav-item-style:active {
+    color: #000;
+    background-color: #A52A2A;
+    /* Change background color on click */
+}
