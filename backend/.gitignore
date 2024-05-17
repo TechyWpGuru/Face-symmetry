@@ -10,7 +10,7 @@ lerna-debug.log*
 ./backend/node_modules
 ./frontend/node_modules
 config/.env.json
-
+dfe38383131e312fce471a541404c4d155257907
 dist
 dist-ssr
 *.local
