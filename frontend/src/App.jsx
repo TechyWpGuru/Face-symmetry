@@ -3,7 +3,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/navBar";
 import Home from "./pages/Home";
-import ShowImage from "./pages/ShowImage.jsx";
 
 function App() {
   return (
