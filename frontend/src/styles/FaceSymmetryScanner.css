@@ -1,5 +1,5 @@
 .progress {
-    height: 20px;
+    height: 40px;
     background-color: #f3f3f3;
 }
 
@@ -13,23 +13,7 @@
     align-items: center;
     justify-content: center;
 }
-
-.table {
-    margin: 0 auto;
-}
-
-.table th,
-.table td {
-    text-align: center;
-    font-weight: bold;
-}
-
-.progress-bar {
-    font-weight: bold;
-}
-
-h3,
-h4,
-p {
-    font-weight: bold;
+.content {
+    padding: 1rem;
+    width: 100%;
 }

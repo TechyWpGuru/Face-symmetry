@@ -30,6 +30,14 @@ const FaceSemetarySection = () => {
     });
   };
 
+  function scrollToResult() {
+    const resultElement = document.getElementById("result");
+    if (resultElement) {
+      resultElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -56,7 +64,7 @@ const FaceSemetarySection = () => {
       );
       let data = await response.data;
       setResult(data);
-      console.log(data);
+      setTimeout(scrollToResult, 100);
     } catch (error) {
       console.error("Error processing the request:", error);
       alert("Failed to process the image.");
@@ -175,7 +183,7 @@ const FaceSemetarySection = () => {
                 </form>
 
                 {preview && (
-                  <div className="">
+                  <div className="mx-auto text-center mt-3">
                     <img
                       src={preview}
                       alt="Selected face"
@@ -188,35 +196,42 @@ const FaceSemetarySection = () => {
             </div>
           </div>
         </div>
-        {isLoading && (
-          <div className="loading-spinner text-center mt-4">
-            <img
-              src="https://spokanerotaract.com/face-shape-detector.gif"
-              alt="Processing..."
-              width={100}
-              height={100}
-            />
-          </div>
-        )}
+        <div className="container">
+          {isLoading && (
+            <div className="loading-spinner text-center mt-4">
+              <img
+                src="https://spokanerotaract.com/face-shape-detector.gif"
+                alt="Processing..."
+                width={100}
+                height={100}
+              />
+            </div>
+          )}
 
-        {!isLoading && result && (
-          <div className="content">
-              <div className="col-12">
+          {!isLoading && result && (
+            <div className="content">
+              <div className="col-12 text-center mt-4" id="result">
                 <h3>Facial Symmetry Analysis Result</h3>
                 <div className="result">
                   <table className="table table-bordered">
                     <thead>
                       <tr>
-                        <th>Shape</th>
-                        <th>Percentage</th>
+                        <th>
+                          <h5>Shape</h5>
+                        </th>
+                        <th>
+                          <h5>Percentage</h5>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       {Object.keys(result.shapes).map((category, index) => (
                         <tr key={index}>
-                          <td>{category}</td>
                           <td>
-                            <div className="progress">
+                            {category}
+                          </td>
+                          <td>
+                            <div className="progress accordion-header font-base">
                               <div
                                 className="progress-bar"
                                 role="progressbar"
@@ -227,7 +242,7 @@ const FaceSemetarySection = () => {
                                 aria-valuemin="0"
                                 aria-valuemax="100"
                               >
-                                {result.shapes[category]}%
+                                {result.shapes[category]}
                               </div>
                             </div>
                           </td>
@@ -237,12 +252,23 @@ const FaceSemetarySection = () => {
                   </table>
                 </div>
               </div>
-              <div className="col-12">
+              <div className="col-12 ">
                 <h4>Analysis Description</h4>
-                <p>{result.description}</p>
+                <h6 className="accordion-header font-base">
+                  {result.description}
+                </h6>
+              </div>
+              <hr
+              style={{
+                height: "4px", // Adjust the height as needed
+                width: "100%", // Set the width to 100% to span the entire container
+                background:
+                  "linear-gradient(261.84deg, #8A2BE2 30.58%, #A52A2A 81.26%, rgba(64, 224, 208, 0.81) 136.94%)",
+                border: "none", // Remove default border
+              }}/>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </section>
     </div>
   );
