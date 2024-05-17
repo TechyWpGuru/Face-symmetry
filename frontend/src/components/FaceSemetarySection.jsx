@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "../styles/FaceSymmetryScanner.css";
+import { toast } from "react-toastify";
 
 const FaceSemetarySection = () => {
   const [file, setFile] = useState(null);
@@ -37,7 +38,6 @@ const FaceSemetarySection = () => {
     }
   }
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -53,7 +53,17 @@ const FaceSemetarySection = () => {
         imageData = base64Image.split(",")[1];
       } else {
         setIsLoading(false);
-        alert("Please select a file or enter an image URL.");
+        toast.error("Please select a file or enter an image URL.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
         return;
       }
 
@@ -66,8 +76,16 @@ const FaceSemetarySection = () => {
       setResult(data);
       setTimeout(scrollToResult, 100);
     } catch (error) {
-      console.error("Error processing the request:", error);
-      alert("Failed to process the image.");
+      toast.error("Failed to process the image. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -227,9 +245,7 @@ const FaceSemetarySection = () => {
                     <tbody>
                       {Object.keys(result.shapes).map((category, index) => (
                         <tr key={index}>
-                          <td>
-                            {category}
-                          </td>
+                          <td>{category}</td>
                           <td>
                             <div className="progress accordion-header font-base">
                               <div
@@ -259,13 +275,14 @@ const FaceSemetarySection = () => {
                 </h6>
               </div>
               <hr
-              style={{
-                height: "4px", // Adjust the height as needed
-                width: "100%", // Set the width to 100% to span the entire container
-                background:
-                  "linear-gradient(261.84deg, #8A2BE2 30.58%, #A52A2A 81.26%, rgba(64, 224, 208, 0.81) 136.94%)",
-                border: "none", // Remove default border
-              }}/>
+                style={{
+                  height: "4px", // Adjust the height as needed
+                  width: "100%", // Set the width to 100% to span the entire container
+                  background:
+                    "linear-gradient(261.84deg, #8A2BE2 30.58%, #A52A2A 81.26%, rgba(64, 224, 208, 0.81) 136.94%)",
+                  border: "none", // Remove default border
+                }}
+              />
             </div>
           )}
         </div>
