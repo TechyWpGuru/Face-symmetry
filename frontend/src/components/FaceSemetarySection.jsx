@@ -68,7 +68,7 @@ const FaceSemetarySection = () => {
       }
 
       const response = await axios.post(
-        "https://face-symmetry-backend.onrender.com/api/analyze-image",
+        "http://localhost:5001/api/analyze-image",
         { image: imageData },
         { headers: { "Content-Type": "application/json" } }
       );
